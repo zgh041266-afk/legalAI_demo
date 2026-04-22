@@ -158,7 +158,7 @@ export default function MainWorkflow({
       title: '新对话',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      status: 'in_progress',
+      status: 'in_progress' as const,
       data: {
         currentStep: 'input',
         completedStep: 0,
@@ -202,7 +202,7 @@ export default function MainWorkflow({
             ...s,
             title: generateDefaultTitle(analysisResult, selectedCase),
             updatedAt: new Date().toISOString(),
-            status: 'completed',
+            status: 'completed' as const,
           };
         }
         return s;
