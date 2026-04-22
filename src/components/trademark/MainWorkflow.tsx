@@ -237,14 +237,21 @@ export default function MainWorkflow({
       // 如果删除的是当前会话，切换到第一个或创建新会话
       if (currentSessionId === sessionId) {
         if (updated.length > 0) {
-          handleSelectSession(updated[0]);
+          const targetSession = updated[0];
+          setCurrentSessionId(targetSession.id);
+          setCurrentStep(targetSession.data.currentStep);
+          setCompletedStep(targetSession.data.completedStep);
+          setAnalysisResult(targetSession.data.analysisResult);
+          setAnalysisInput(targetSession.data.analysisInput);
+          setSelectedCase(targetSession.data.selectedCase);
+          setLetterFormData(targetSession.data.letterFormData);
         } else {
           createNewSession();
         }
       }
       return updated;
     });
-  }, [currentSessionId, handleSelectSession, createNewSession]);
+  }, [currentSessionId, createNewSession]);
 
   // 重命名会话
   const handleRenameSession = useCallback((sessionId: string, newTitle: string) => {
